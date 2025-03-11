@@ -1,0 +1,51 @@
+Replication:-
+
+1) mongod --port = 2717 --dbpath = "C:\data\primary" --rep1Set ="test-replica-set"
+
+2)mongod --port = 2727 --dbpath = "C:\data\secondary1" --rep1Set ="test-replica-set"
+
+3)mongod --port = 2737 --dbpath = "C:\data\secondary2" --rep1Set ="test-replica-set"
+
+4)mongosh -- host= "localhost :2717"
+
+5)rs.initiate()
+
+6)rs.add({host:"localhost:2717"});
+
+7)rs.add({host:"localhost:2737"});
+8)rs.status() {after connecting the fourth ISE shell to localhost 2717
+
+9)Open new ISE shell and connect
+mongosh --host = "localhost:2727"
+
+10)Open new ISE shell and connect 
+
+mongosh --host = "localhost : 2737"
+
+11)Open localhost 2717 
+show dbs
+use practice
+
+db.users.insert({name = "Deepa"})
+
+db.users.insert({name = "Sejal"})
+
+db.users.find()
+
+12)Go to terminal with localhost 2727
+
+db.getMongo().setReadPref("secondaryPreferred")
+
+use practice
+db.users.find()
+
+db.users.find({name="Deepa"})
+
+13)Open terminal 2737
+use practice
+
+db.users.deleteOne({name = "Deepa"})
+
+14)Open terminal 2727
+
+db.users.find({name="Deepa")
